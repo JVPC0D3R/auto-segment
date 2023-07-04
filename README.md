@@ -11,6 +11,7 @@
 </p>
 
 <p align = "center">
-  <img src = "./examples/example_1.png" width = "100%">
+  <img src = "./images/zidane.jpg" width = "49%">
+  <img src = "./examples/example_1.PNG" width = "49%">
 </p>
 
