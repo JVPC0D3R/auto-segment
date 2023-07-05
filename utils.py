@@ -25,14 +25,9 @@ def show_box(box, ax):
 
 def get_edge_mask(mask, sigma = 1, structure=np.ones((3,3))):
     
-    # dilated_mask = binary_dilation(mask)
-    # eroded_mask = binary_erosion(dilated_mask)
-    # edge_mask = mask & ~eroded_mask
-
-    #edge_mask = sobel(mask)
 
     if mask.ndim > 2:
-        mask = mask[0, :, :]  # change this line to select the first "channel"
+        mask = mask[0, :, :]  
 
 
     # Apply Gaussian blur
@@ -45,7 +40,6 @@ def get_edge_mask(mask, sigma = 1, structure=np.ones((3,3))):
     for i in range(0,3):
         mask = binary_dilation(mask, structure=structure)
 
-    
 
     mask = (mask * 255).astype(np.uint8)
 
@@ -63,9 +57,13 @@ def get_edge_mask(mask, sigma = 1, structure=np.ones((3,3))):
 def get_edge_coordinates(mask):
 
     _, y_indices, x_indices = np.nonzero(get_edge_mask(mask))
-    
+
     h, w = mask.shape[-2:]
 
-    edge_coords = np.column_stack((x_indices / w, y_indices / h)).flatten()
+    edge_coords = ' '.join([f'{x / w} {y / h}' for x, y in zip(x_indices, y_indices)])
     return edge_coords
+
+def write_line_to_file(filename, line):
+    with open(filename, 'a') as file:
+        file.write(line + '\n')
 
