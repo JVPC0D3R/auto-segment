@@ -1,9 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.ndimage import gaussian_filter, binary_opening, binary_dilation
+import cv2
 
 def show_mask(mask, ax, random_color=True):
     if random_color:
-        color = np.concatenate([np.random.random(3), np.array([0.6])], axis=0)
+        color = np.concatenate([np.random.random(3), np.array([1.0])], axis=0)
     else:
         color = np.array([30/255, 144/255, 255/255, 0.6])
     h, w = mask.shape[-2:]
@@ -20,3 +22,50 @@ def show_box(box, ax):
     x0, y0 = box[0], box[1]
     w, h = box[2] - box[0], box[3] - box[1]
     ax.add_patch(plt.Rectangle((x0, y0), w, h, edgecolor='green', facecolor=(0,0,0,0), lw=2))
+
+def get_edge_mask(mask, sigma = 1, structure=np.ones((3,3))):
+    
+    # dilated_mask = binary_dilation(mask)
+    # eroded_mask = binary_erosion(dilated_mask)
+    # edge_mask = mask & ~eroded_mask
+
+    #edge_mask = sobel(mask)
+
+    if mask.ndim > 2:
+        mask = mask[0, :, :]  # change this line to select the first "channel"
+
+
+    # Apply Gaussian blur
+    mask = gaussian_filter(mask, sigma=sigma)
+
+    # Apply opening operation
+    mask = binary_opening(mask, structure=structure)
+
+    # Apply dilation operation
+    for i in range(0,3):
+        mask = binary_dilation(mask, structure=structure)
+
+    
+
+    mask = (mask * 255).astype(np.uint8)
+
+    edges = cv2.Canny(mask, threshold1=254, threshold2=255)
+
+    # Convert back to original mask format
+    edges = edges == 255
+
+    # Reshape to maintain original mask shape
+    edge_mask = edges[np.newaxis, :, :]
+    
+    
+    return edge_mask
+
+def get_edge_coordinates(mask):
+
+    _, y_indices, x_indices = np.nonzero(get_edge_mask(mask))
+    
+    h, w = mask.shape[-2:]
+
+    edge_coords = np.column_stack((x_indices / w, y_indices / h)).flatten()
+    return edge_coords
+

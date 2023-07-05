@@ -5,8 +5,9 @@ import numpy as np
 from ultralytics import YOLO
 import os
 import matplotlib.pyplot as plt
-from utils import show_box, show_mask, show_points
+from utils import show_box, show_mask, show_points, get_edge_coordinates, get_edge_mask
 from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
+
 
 # Image folder
 folder_path = "./images/"
@@ -55,17 +56,10 @@ for filename in os.listdir(folder_path):
                     box=input_box[None, :],
                     multimask_output=False,
                 )
-
+                
                 masks.append(mask)
 
-
-        plt.figure(figsize=(10, 10))
-        plt.imshow(img)
+        print(len(get_edge_coordinates(mask))/2)
         
-        
-        for mask in masks:
-            show_mask(mask, plt.gca())
-        plt.axis('off')
-        plt.show()
 
 
