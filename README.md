@@ -41,6 +41,11 @@
   This repo allows you to atomate a YOLOv8 format segmentation dataset generation process. To start generating your dataset, you will need to copy all your images on the "images" folder, also you will need a custom YOLOv8 object detection model (copy the custom_yolov8.pt ckpt in the main folder).
 </p>
 
+<p align = "center">
+  <img src = "./examples/example_3.PNG" width = "100%">
+  
+</p>
+
 <p align = "justify">
   In the "create_dataset.py" script, replace the "yolov8n.pt" string with yout custom YOLOv8 file. 
 </p>
