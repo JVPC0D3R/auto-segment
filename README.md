@@ -6,6 +6,12 @@
   This repo contains different tools to generate your own segmentation datasets using your object detection YOLOv8 models. This work is a continuation of the article <a href="https://blog.roboflow.com/how-to-use-yolov8-with-sam/"> "How to use YOLOv8 with SAM" </a>published by Arty Ariuntuya on Roboflow, in which she explained the power of both models working together.
 </p>
 
+<p align = "center">
+  <img src = "./resources/auto-segment.gif" width = "100%">
+</p>
+
+<p align="center"><em>Auto-segment pixel-art by JVPC0D3R</em></p>
+
 ## 🎭 segmentation mask
 
 <p align = "justify">
