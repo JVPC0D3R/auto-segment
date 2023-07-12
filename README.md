@@ -15,7 +15,7 @@
 ## 🎭 segmentation mask
 
 <p align = "justify">
-  After performing object detection with YOLOv8, bounding boxes are sent to SAM, in order to make him understand which object do we want to get the mask from.
+  After performing object detection with YOLOv8, bounding boxes are sent to SAM, in order to make him understand which object we want to get the mask from.
 </p>
 
 <p align = "center">
@@ -46,13 +46,15 @@
 ## 🏷️ segmentation dataset automation
 
 <p align = "justify">
-  This repo allows you to atomate a YOLOv8 format segmentation dataset generation process. To start generating your dataset, you will need to copy all your images on the "images" folder, also you will need a custom YOLOv8 object detection model (copy the custom_yolov8.pt ckpt in the main folder).
+  This repo allows you atomate a YOLOv8 format segmentation dataset generation process. To start generating your dataset, you will need to copy all your images on the "images" folder, also you will need a custom YOLOv8 object detection model (copy the custom_yolov8.pt ckpt in the main folder).
 </p>
 
-<p align = "center">
-  <img src = "./examples/example_3.PNG" width = "100%">
-  
-</p>
+```
+0 0.6812 0.48541 0.67 0.4875 0.67656 0.487 0.675 0.489 0.66
+1 0.5046 0.0 0.5015 0.004 0.4984 0.00416 0.4937 0.010 0.492 0.0104
+```
+
+<p align="center"><em>YOLOv8 segmentation dataset format</em></p>
 
 <p align = "justify">
   In the "create_dataset.py" script, replace the "yolov8n.pt" string with yout custom YOLOv8 file. 
@@ -64,7 +66,44 @@ yolo = YOLO('your_custom_yolov8.pt')
 ```
 
 <p align="justify">
-  Keep in mind that this YOLOv8 model will only generate the bounding boxes of the objects and will give that information to SAM.
+  In order to run the script use the folowing command:
+</p>
+
+```python create_dataset.py```
+
+<p align="justify">
+  Keep in mind that this YOLOv8 model will only generate the bounding box for each object and will give that information to SAM.
+</p>
+
+<p align="justify">
+  If you run a automatic labelling process on a large image folder the process may take a long time. The labels will be stored on the output folder with the same name as the source image with the txt extension.
+</p>
+
+## 👁️ view masks
+
+<p align="justify">
+  The view_masks.py script allows the user to visualize the different steps in the dataset generation process. In the figure below you can see the raw image, the bounding boxes created by YOLOv8, the binary mask created by SAM using YOLOv8 information, and the edges of those binary masks in order to get the YOLOV8 format. 
+</p>
+
+<p align = "center">
+  <img src = "./examples/example_3.PNG" width = "100%">
+</p>
+
+<p align="center"><em>view_masks.py output</em></p>
+
+## ✂️ crop detections
+
+<p align="justify">
+  This repo allows the user to crop the different detections with precission, to run it you will use the following command.
+</p>
+
+```python crop_objects.py```
+
+<p align = "center">
+  <img src = "./crops/bus_ultralytics_3.png" width = "24%">
+  <img src = "./crops/bus_ultralytics_0.png" width = "24%">
+  <img src = "./crops/bus_ultralytics_2.png" width = "24%">
+  <img src = "./crops/bus_ultralytics_1.png" width = "24%">
 </p>
 
 ## 📚 sources
