@@ -111,7 +111,7 @@ yolo = YOLO('your_custom_yolov8.pt')
 <p align="center"><em>crop_objects.py output example</em></p>
 
 <p align="justify">
-You can also execute this software on <a href="https://github.com/JVPC0D3R/auto-segment/blob/main/crop_objects.ipynb
+You can also execute this software on <a href="https://colab.research.google.com/github/JVPC0D3R/auto-segment/blob/main/crop_objects.ipynb
 ">Google Colab</a>!
 </p>
 
