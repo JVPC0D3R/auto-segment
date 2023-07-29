@@ -1,6 +1,7 @@
 # auto-segment
 
 ![Last Commit](https://img.shields.io/github/last-commit/JVPC0D3R/auto-segment)
+![License](https://img.shields.io/github/license/JVPC0D3R/auto-segment)
 
 <p align = "justify"> 
   This repo contains different tools to generate your own segmentation datasets using your object detection YOLOv8 models. This work is a continuation of the article <a href="https://blog.roboflow.com/how-to-use-yolov8-with-sam/"> "How to use YOLOv8 with SAM" </a>published by Arty Ariuntuya on Roboflow, in which she explained the power of both models working together.
@@ -22,6 +23,7 @@
   <img src = "./images/zidane.jpg" width = "49%">
   <img src = "./examples/example_1.PNG" width = "49%">
 </p>
+<p align="center"><em>SAM ft YOLOv8 masks example</em></p>
 
 ## 📦 installation
 
@@ -89,12 +91,12 @@ yolo = YOLO('your_custom_yolov8.pt')
   <img src = "./examples/example_3.PNG" width = "100%">
 </p>
 
-<p align="center"><em>view_masks.py output</em></p>
+<p align="center"><em>view_masks.py output example</em></p>
 
 ## ✂️ crop detections
 
 <p align="justify">
-  This repo allows the user to crop the different detections with precission, to run it you will use the following command.
+  This repo allows the user to crop the different detections automatically with precission, to run it you will use the following command.
 </p>
 
 ```python crop_objects.py```
@@ -104,6 +106,13 @@ yolo = YOLO('your_custom_yolov8.pt')
   <img src = "./crops/bus_ultralytics_0.png" width = "24%">
   <img src = "./crops/bus_ultralytics_2.png" width = "24%">
   <img src = "./crops/bus_ultralytics_1.png" width = "24%">
+</p>
+
+<p align="center"><em>crop_objects.py output example</em></p>
+
+<p align="justify">
+You can also execute this software on <a href="https://colab.research.google.com/github/JVPC0D3R/crop_objects/blob/master/crop_objects.ipynb
+">Google Colab</a>!
 </p>
 
 ## 📚 sources

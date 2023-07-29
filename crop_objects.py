@@ -43,16 +43,12 @@ results = yolo.predict(source = img)
 # Set image for SAM
 segmentator.set_image(img)
 
-plt.style.use('dark_background')
-fig, axs = plt.subplots(2, 2, figsize=(20, 20))
-
 # Convert to BGR
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 for result in results:
     
     boxes = result.boxes
-    class_id = result#.index(max(result.probs))
 
     for i, bbox in enumerate(boxes.xyxy.tolist()):
 
